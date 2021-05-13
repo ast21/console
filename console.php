@@ -8,5 +8,6 @@ use Symfony\Component\Console\Application;
 $application = new Application();
 
 $application->add(new App\Command\Laravel\KeyGenerateCommand());
+$application->add(new App\Command\Laravel\PasswordGenerateCommand());
 
 $application->run();
