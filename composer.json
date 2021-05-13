@@ -1,5 +1,21 @@
 {
+    "name": "ast/console",
+    "description": "My custom console commands",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anastas Mironov",
+            "email": "thebreakhack@gmail.com"
+        }
+    ],
+    "autoload": {
+    "psr-4": {
+        "App\\": "src/"
+    }
+},
     "require": {
-        "symfony/console": "^5.2"
+        "symfony/console": "^5.2",
+        "laravel/helpers": "^1.4"
     }
 }
