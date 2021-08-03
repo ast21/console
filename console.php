@@ -11,5 +11,6 @@ $application->add(new App\Command\Laravel\KeyGenerateCommand());
 $application->add(new App\Command\Laravel\PasswordGenerateCommand());
 
 $application->add(new App\Command\Random());
+$application->add(new App\Command\Generate\PDFGenerateCommand());
 
 $application->run();
