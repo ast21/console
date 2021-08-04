@@ -203,14 +203,19 @@ class PDFsGenerateCommand extends Command
         date_default_timezone_set('Asia/Yakutsk');
 
         foreach ($modules as $module) {
+            $pageCount = random_int(1, 10);
             $time = date('His');
             $slug = Str::slug($module, '_');
             $path = "/tmp/pdf/{$time}_{$slug}.pdf";
-            $html = "<h1>$module</h1>";
+            $title = "<h1>$module</h1>";
 
             $mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
             $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
-            $mpdf->WriteHTML($html, \Mpdf\HTMLParserMode::HTML_BODY);
+            for ($i = 1; $i <= $pageCount; $i++) {
+                $mpdf->addPage();
+                $mpdf->WriteHTML($title, \Mpdf\HTMLParserMode::HTML_BODY);
+                $mpdf->WriteHTML("<h1>Страница $i из $pageCount</h1>", \Mpdf\HTMLParserMode::HTML_BODY);
+            }
             $mpdf->Output($path, \Mpdf\Output\Destination::FILE);
 
             $output->writeln("<info>$path</info>");
