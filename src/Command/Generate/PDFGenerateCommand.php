@@ -15,19 +15,25 @@ class PDFGenerateCommand extends Command
     {
         $this
             ->addArgument('text', InputArgument::REQUIRED, 'Enter text in pdf file')
+            ->addArgument('pageCount', InputArgument::OPTIONAL, 'Enter text in pdf file', 1)
             ->setDescription('Generate pdf file of text');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $text = $input->getArgument('text');
+        $pageCount = $input->getArgument('pageCount');
         $path = "/tmp/$text.pdf";
         $stylesheet = "body { background-color: #d9eef0; }";
-        $html = "<h1>$text</h1>";
+        $title = "<h1>$text</h1>";
 
         $mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
         $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
-        $mpdf->WriteHTML($html, \Mpdf\HTMLParserMode::HTML_BODY);
+        for ($i = 1; $i <= $pageCount; $i++) {
+            $mpdf->addPage();
+            $mpdf->WriteHTML($title, \Mpdf\HTMLParserMode::HTML_BODY);
+            $mpdf->WriteHTML("<h1>Страница $i</h1>", \Mpdf\HTMLParserMode::HTML_BODY);
+        }
         $mpdf->Output($path, \Mpdf\Output\Destination::FILE);
 
         $output->writeln("<info>$path</info>");
