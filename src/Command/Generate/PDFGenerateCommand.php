@@ -23,16 +23,31 @@ class PDFGenerateCommand extends Command
     {
         $text = $input->getArgument('text');
         $pageCount = $input->getArgument('pageCount');
-        $path = "/tmp/$text.pdf";
-        $stylesheet = "body { background-color: #d9eef0; }";
-        $title = "<h1>$text</h1>";
+        $path = "/tmp/certificate/$text.pdf";
+        $stylesheet = "
+            body {
+                background-color: #d9eef0;
+                background-image: url('/tmp/certificate/certificate.png');
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .name {
+                position: absolute;
+                margin-top: 400px;
+                font-size: 30px;
+                width: 620px;
+                text-align: center;
+                color: #be9265;
+            }
+        ";
 
-        $mpdf = new \Mpdf\Mpdf(['orientation' => 'L']);
+        $title = "<div class='name'>$text</div>";
+
+        $mpdf = new \Mpdf\Mpdf(['mode' => 'utf-8', 'orientation' => 'L', 'format' => [210, 294]]);
         $mpdf->WriteHTML($stylesheet, \Mpdf\HTMLParserMode::HEADER_CSS);
         for ($i = 1; $i <= $pageCount; $i++) {
             $mpdf->addPage();
             $mpdf->WriteHTML($title, \Mpdf\HTMLParserMode::HTML_BODY);
-            $mpdf->WriteHTML("<h1>Страница $i</h1>", \Mpdf\HTMLParserMode::HTML_BODY);
         }
         $mpdf->Output($path, \Mpdf\Output\Destination::FILE);
 
