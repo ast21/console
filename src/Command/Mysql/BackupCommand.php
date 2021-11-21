@@ -28,7 +28,7 @@ class BackupCommand extends Command
         $PORT = $input->getArgument('username') ?? '3306';
         $USERNAME = $input->getArgument('username') ?? 'root';
         $DATABASE = $input->getArgument('database');
-        $BACKUP_PATH = date("Y-m-d_H-i-s_") . $DATABASE . '.sql.gz';
+        $BACKUP_PATH = $input->getArgument('path') ?? date("Y-m-d_H-i-s_") . $DATABASE . '.sql.gz';
 
         shell_exec("mysqldump -h $HOST -P $PORT -u $USERNAME -p $DATABASE | gzip > $BACKUP_PATH");
         $output->writeln("<info>backup filename: $BACKUP_PATH</info>");
