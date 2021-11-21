@@ -15,5 +15,6 @@ $application->add(new App\Command\Generate\PDFGenerateCommand());
 $application->add(new App\Command\Generate\PDFsGenerateCommand());
 
 $application->add(new App\Command\Mysql\BackupCommand());
+$application->add(new App\Command\Mysql\RestoreCommand());
 
 $application->run();
