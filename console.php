@@ -14,4 +14,6 @@ $application->add(new App\Command\Random());
 $application->add(new App\Command\Generate\PDFGenerateCommand());
 $application->add(new App\Command\Generate\PDFsGenerateCommand());
 
+$application->add(new App\Command\Mysql\BackupCommand());
+
 $application->run();
