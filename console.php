@@ -7,14 +7,15 @@ use Symfony\Component\Console\Application;
 
 $application = new Application();
 
+# Laravel
 $application->add(new App\Command\Laravel\KeyGenerateCommand());
 $application->add(new App\Command\Laravel\PasswordGenerateCommand());
 
-$application->add(new App\Command\Random());
-$application->add(new App\Command\Generate\PDFGenerateCommand());
-$application->add(new App\Command\Generate\PDFsGenerateCommand());
-
+# Mysql
 $application->add(new App\Command\Mysql\BackupCommand());
 $application->add(new App\Command\Mysql\RestoreCommand());
+
+# Other commands
+$application->add(new App\Command\Random());
 
 $application->run();

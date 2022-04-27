@@ -1,12 +1,12 @@
 {
-    "name": "ast/console",
+    "name": "ast21/console",
     "description": "My custom console commands",
     "type": "project",
     "license": "MIT",
     "authors": [
         {
             "name": "Anastas Mironov",
-            "email": "thebreakhack@gmail.com"
+            "email": "ast@l80.ru"
         }
     ],
     "autoload": {
@@ -16,7 +16,6 @@
 },
     "require": {
         "symfony/console": "^5.2",
-        "laravel/helpers": "^1.4",
-        "mpdf/mpdf": "^8.0"
+        "laravel/helpers": "^1.4"
     }
 }
