@@ -21,7 +21,6 @@ class PasswordGenerateCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $password = $input->getArgument('password');
-        $random32 = \Illuminate\Support\Str::random(32);
         $output->writeln('<info>' . password_hash($password, PASSWORD_BCRYPT) . '</info>');
         return Command::SUCCESS;
     }
