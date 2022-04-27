@@ -2,14 +2,24 @@
 
 ### install for linux
 
-Install packages
+1. Clone to folder
+```shell
+git clone https://github.com/ast21/console.git && cd console
+```
+
+2. Install packages
 ```shell
 composer install
 ```
 
-Move to executable folder
+3. Move to executable folder
 ```shell
 sudo ln -s $PWD/console.php /usr/local/bin/con
+```
+
+4. Get command list
+```shell
+con list
 ```
 
 ## Other instructions
