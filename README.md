@@ -4,7 +4,7 @@
 
 1. Clone to folder
 ```shell
-git clone https://github.com/ast21/console.git && cd console
+git clone https://github.com/ast21/console-php.git && cd console
 ```
 
 2. Install packages
